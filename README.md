@@ -2,6 +2,10 @@
 
 VinylBox is a responsive vinyl-record collection and wishlist manager with Supabase authentication and Discogs-powered record search.
 
+## Live demo
+
+Not deployed yet.
+
 ## Highlights
 
 - Email/password authentication with Supabase.
@@ -12,6 +16,10 @@ VinylBox is a responsive vinyl-record collection and wishlist manager with Supab
 ## Tech
 
 Next.js, React, TypeScript, Supabase, Discogs API, and Sass.
+
+## Screenshots
+
+Screenshots will be added once a preview environment with Supabase and Discogs credentials is available.
 
 ## Run locally
 
