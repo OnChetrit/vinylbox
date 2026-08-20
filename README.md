@@ -1,47 +1,20 @@
 # VinylBox
 
-VinylBox is a responsive vinyl-record collection and wishlist manager with Supabase authentication and Discogs-powered record search.
+Browse and manage an existing Discogs vinyl collection through a tactile, cover-first shelf UI.
 
-## Live demo
+## Quickstart
 
-Not deployed yet.
-
-## Highlights
-
-- Email/password authentication with Supabase.
-- Search Discogs for record data and artwork.
-- Save records to a collection or wishlist.
-- Browse collection and wishlist pages with responsive SCSS styling.
-
-## Tech
-
-Next.js, React, TypeScript, Supabase, Discogs API, and Sass.
-
-## Screenshots
-
-Screenshots will be added once a preview environment with Supabase and Discogs credentials is available.
-
-## Run locally
-
-~~~bash
+```bash
 npm install
-cp env.sample .env.local
 npm run dev
-~~~
+```
 
-Set these values in .env.local:
+Visit http://localhost:3000.
 
-~~~text
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-DISCOGS_TOKEN=
-~~~
+## How it works
 
-Open http://localhost:3000.
+Open the app, paste a Discogs personal access token, and VinylBox verifies the associated account before loading its collection. The token is saved only in that browser's local storage; it is not saved in Supabase, an environment file, or the application database.
 
-## Production build
+Use the shelf to filter, sort, inspect, and remove copies. Use the Discogs search below it to add a specific vinyl release. VinylBox displays the required “Data provided by Discogs” attribution.
 
-~~~bash
-npm run build
-npm start
-~~~
+Responsive SCSS lives in `src/styles` and per-component modules. Supabase client is provided via `SupabaseProvider`.

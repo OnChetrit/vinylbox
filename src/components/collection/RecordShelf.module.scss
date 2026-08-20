@@ -1,0 +1,110 @@
+.viewport {
+  position: relative;
+  padding: 18px 0 31px;
+  overflow: hidden;
+}
+
+.rail {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  min-height: 278px;
+  overflow-x: auto;
+  padding: 24px 28px 12px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(244, 179, 103, 0.6) transparent;
+}
+
+.sleeve {
+  width: clamp(132px, 17vw, 196px);
+  flex: 0 0 auto;
+  position: relative;
+  margin-right: -28px;
+  padding: 7px;
+  border: 1px solid rgba(255, 234, 201, 0.25);
+  background: #15110f;
+  box-shadow: 7px 3px 14px rgba(0, 0, 0, 0.46);
+  transform: translateY(var(--bow-drop, 0)) rotate(var(--bow-lean, 0deg));
+  transform-origin: center bottom;
+  transition: transform 260ms cubic-bezier(.2,.8,.2,1), margin 260ms ease;
+
+  &:hover, &:focus-within {
+    margin-right: 14px;
+    transform: translateY(calc(var(--bow-drop, 0) - 26px)) rotate(var(--bow-lean, 0deg));
+  }
+}
+
+.coverButton {
+  padding: 0;
+  width: 100%;
+  display: block;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  height: auto;
+  object-fit: cover;
+  background: #28201b;
+}
+
+.rim {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: inset 0 0 22px rgba(0,0,0,.42);
+  pointer-events: none;
+}
+
+.details {
+  min-height: 52px;
+  padding: 8px 1px 1px;
+  overflow: hidden;
+
+  p, span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  p { color: #fff5e6; font-family: var(--font-display); font-size: .92rem; margin: 0 0 3px; }
+  span { color: #bfafa2; font-size: .71rem; }
+}
+
+.remove {
+  opacity: 0;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.25);
+  background: #2a1714;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: opacity 160ms ease, transform 160ms ease;
+
+  &:hover { transform: scale(1.08); background: #9f3728; }
+  &:disabled { cursor: wait; }
+}
+
+.sleeve:hover .remove, .sleeve:focus-within .remove { opacity: 1; }
+
+.plinth {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  height: 22px;
+  border-radius: 3px;
+  background: linear-gradient(#8b5034 0 12%, #4f281e 12% 72%, #211210 72%);
+  box-shadow: 0 11px 21px rgba(0,0,0,.36), inset 0 1px rgba(255,226,181,.22);
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .rail { min-height: 240px; padding-left: 7px; }
+  .sleeve { margin-right: -46px; }
+}

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.scss";
 import NavBar from "@/components/ui/NavBar";
-import SupabaseProvider from "@/components/providers/SupabaseProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "VinylBox",
-  description: "Manage and discover vinyl records with your personal box.",
+  description: "A tactile home for your Discogs vinyl collection.",
 };
 
 export default function RootLayout({
@@ -27,12 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <SupabaseProvider>
-          <div className="app-shell">
-            <NavBar />
-            <main className="page">{children}</main>
-          </div>
-        </SupabaseProvider>
+        <div className="app-shell">
+          <NavBar />
+          <main className="page">{children}</main>
+        </div>
       </body>
     </html>
   );

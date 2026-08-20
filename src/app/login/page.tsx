@@ -1,12 +1,5 @@
-import AuthForm from "@/components/auth/AuthForm";
+import { redirect } from "next/navigation";
 
 export default function LoginPage() {
-  return (
-    <div className="section">
-      <AuthForm />
-    </div>
-  );
+  redirect("/");
 }
-
-
-

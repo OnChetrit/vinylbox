@@ -80,7 +80,7 @@ export default function RecordModal({ record, originRect, onClose }: Props) {
           <h2 style={{ margin: 0 }}>{record.title}</h2>
           <div className="muted">
             {record.artist}
-            {record.year ? ` · ${record.year}` : ""}
+            {record.originalYear ? ` · original release ${record.originalYear}` : record.year ? ` · pressing ${record.year}` : ""}
             {record.country ? ` · ${record.country}` : ""}
           </div>
           <div className={styles.tags}>
@@ -110,4 +110,3 @@ export default function RecordModal({ record, originRect, onClose }: Props) {
     document.body,
   );
 }
-

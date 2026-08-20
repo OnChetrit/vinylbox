@@ -89,11 +89,21 @@ export async function searchVinyls(
 
   if (!token) {
     console.warn("DISCOGS_TOKEN is missing. Falling back to mock data.");
-    return mockRecords.filter(
+    const results = mockRecords.filter(
       (item) =>
         item.title.toLowerCase().includes(query.toLowerCase()) ||
         item.artist.toLowerCase().includes(query.toLowerCase()),
     );
+    const perPage = options.perPage ?? 18;
+    const page = options.page ?? 1;
+
+    return {
+      results: results.slice((page - 1) * perPage, page * perPage),
+      page,
+      pages: Math.ceil(results.length / perPage),
+      perPage,
+      total: results.length,
+    };
   }
 
   const searchParams = new URLSearchParams({
@@ -143,8 +153,8 @@ export async function searchVinyls(
 export async function fetchRecommendations(
   seed: string | undefined = "classic vinyl",
 ): Promise<RecordItem[]> {
-  const records = await searchVinyls(seed);
-  if (records.length) return records.slice(0, 12);
+  const { results } = await searchVinyls(seed);
+  if (results.length) return results.slice(0, 12);
   return mockRecords;
 }
 
@@ -168,4 +178,3 @@ export async function fetchRelease(discogsId: string): Promise<RecordItem | null
   const data: DiscogsRelease = await response.json();
   return mapRelease(data);
 }
-

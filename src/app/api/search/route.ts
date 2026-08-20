@@ -17,8 +17,8 @@ export async function GET(request: Request) {
     | "genre"
     | "style"
     | "country"
-    | null;
-  const sortOrder = searchParams.get("sortOrder") as "asc" | "desc" | null;
+    | undefined;
+  const sortOrder = searchParams.get("sortOrder") as "asc" | "desc" | undefined;
   const page = Number(searchParams.get("page") ?? "1");
   const perPage = Number(searchParams.get("perPage") ?? "18");
 
@@ -34,6 +34,5 @@ export async function GET(request: Request) {
 
   return NextResponse.json(results);
 }
-
 
 
