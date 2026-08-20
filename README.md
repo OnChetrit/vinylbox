@@ -13,8 +13,12 @@ Visit http://localhost:3000.
 
 ## How it works
 
-Open the app, paste a Discogs personal access token, and VinylBox verifies the associated account before loading its collection. The token is saved only in that browser's local storage; it is not saved in Supabase, an environment file, or the application database.
+Open the app, paste a Discogs personal access token, and VinylBox verifies the associated account before loading its collection. The token is saved only in that browser's local storage; it is sent directly to Discogs and is not saved in Supabase, an environment file, or the application database.
 
 Use the shelf to filter, sort, inspect, and remove copies. Use the Discogs search below it to add a specific vinyl release. VinylBox displays the required “Data provided by Discogs” attribution.
+
+## GitHub Pages
+
+`npm run build:pages` generates the static site in `out/`. The published `gh-pages` branch contains those generated files and is served at `https://onchetrit.github.io/vinylbox/`.
 
 Responsive SCSS lives in `src/styles` and per-component modules. Supabase client is provided via `SupabaseProvider`.

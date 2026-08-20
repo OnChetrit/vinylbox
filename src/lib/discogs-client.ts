@@ -1,5 +1,7 @@
 import type { RecordItem } from "@/types/record";
 
+const DISCOGS_API = "https://api.discogs.com";
+
 export type DiscogsIdentity = {
   username: string;
   avatarUrl?: string;
@@ -27,10 +29,10 @@ type CollectionEntry = {
 };
 
 async function request<T>(token: string, path: string, options?: { method?: "PUT" | "DELETE"; params?: Record<string, string> }) {
-  const query = new URLSearchParams({ path, ...options?.params });
-  const response = await fetch(`/api/discogs?${query.toString()}`, {
+  const query = new URLSearchParams(options?.params);
+  const response = await fetch(`${DISCOGS_API}${path}?${query.toString()}`, {
     method: options?.method ?? "GET",
-    headers: { "x-discogs-token": token },
+    headers: { Authorization: `Discogs token=${token}` },
   });
 
   if (!response.ok) {
