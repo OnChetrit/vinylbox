@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
+  // Keep the Pages export separate so `npm start` can never serve its /vinylbox assets locally.
+  ...(isGitHubPages ? { distDir: ".next-pages" } : {}),
   ...(isGitHubPages
     ? {
         output: "export",
